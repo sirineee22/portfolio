@@ -149,7 +149,7 @@ export const translations = {
       downloadCv: "Télécharger mon CV",
       location: "Ariana, Tunisie",
       letsConnect: "Créons ensemble quelque chose d'unique",
-      role: "Élève-Ingénieure Logiciel",
+      role: "Software Engineer",
       cardStatus: "Disponible PFE (6 Mois) & CDI",
       cardLocation: "Ariana, Tunisie · Télétravail & Mobilité",
       cardTags: ["Spring Boot", "FastAPI", "React", "Docker", "PostgreSQL"],

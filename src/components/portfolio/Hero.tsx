@@ -128,29 +128,10 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Dynamic Live Status Indicator */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs font-mono mb-3 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{t.cardStatus}</span>
-            </div>
-
-            {/* Location Tag */}
-            <div className="flex items-center justify-center gap-1.5 text-xs text-slate-300 font-sans mb-3.5">
-              <MapPin className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-              <span>{t.cardLocation}</span>
-            </div>
-
-            {/* Core Tech Stack Tags */}
-            <div className="flex flex-wrap justify-center gap-1.5 pt-3 border-t border-white/[0.08] w-full">
-              {t.cardTags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-slate-300 group-hover:border-indigo-500/30 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            {/* Role Title */}
+            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+              {t.role}
+            </h3>
           </SpotlightCard>
         </div>
       </div>
