@@ -19,9 +19,6 @@ export function Footer() {
           </span>
           <div>
             <p className="font-semibold text-white">Dahmane Sirine</p>
-            <p className="font-mono text-[11px] text-slate-500">
-              {t.roleSubtitle}
-            </p>
           </div>
         </div>
 

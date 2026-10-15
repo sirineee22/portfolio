@@ -110,17 +110,16 @@ export function Hero() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: CIRCULAR PROFILE PHOTO IN MINIMALIST CARD WITH CREATIVE ANIMATIONS */}
+        {/* RIGHT COLUMN: SCALED BENTO PROFILE CARD WITH DYNAMIC STATUS & TECH TAGS */}
         <div className="lg:col-span-5 flex justify-center items-center relative z-10">
-
           <SpotlightCard
             spotlightColor="rgba(99, 102, 241, 0.25)"
-            className="w-full max-w-xs p-6 rounded-3xl border-white/[0.12] bg-[#0c1222]/90 shadow-2xl flex flex-col items-center text-center group transition-all duration-300 hover:scale-[1.02]"
+            className="w-full max-w-[360px] sm:max-w-[380px] p-7 sm:p-8 rounded-3xl border border-white/[0.12] bg-[#0c1222]/95 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center group transition-all duration-300 hover:scale-[1.02] hover:border-indigo-500/40 hover:shadow-[0_20px_50px_rgba(99,102,241,0.2)]"
           >
             {/* Avatar with Rotating Halo */}
-            <div className="relative mb-4">
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-indigo-500 via-violet-500 to-cyan-400 opacity-75 blur-md animate-rotate-halo group-hover:opacity-100 transition-opacity" />
-              <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-full overflow-hidden bg-[#030712] border-2 border-white/[0.2] shadow-inner">
+            <div className="relative mb-5">
+              <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-indigo-500 via-violet-500 to-cyan-400 opacity-75 blur-md animate-rotate-halo group-hover:opacity-100 transition-opacity" />
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden bg-[#030712] border-2 border-white/[0.2] shadow-2xl">
                 <img
                   src={profilePhoto}
                   alt="Dahmane Sirine"
@@ -129,12 +128,29 @@ export function Hero() {
               </div>
             </div>
 
-            <h3 className="text-base font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
-              Dahmane Sirine
-            </h3>
-            <p className="text-xs font-mono text-slate-400 mt-0.5">
-              Software Engineer
-            </p>
+            {/* Dynamic Live Status Indicator */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-xs font-mono mb-3 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{t.cardStatus}</span>
+            </div>
+
+            {/* Location Tag */}
+            <div className="flex items-center justify-center gap-1.5 text-xs text-slate-300 font-sans mb-3.5">
+              <MapPin className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+              <span>{t.cardLocation}</span>
+            </div>
+
+            {/* Core Tech Stack Tags */}
+            <div className="flex flex-wrap justify-center gap-1.5 pt-3 border-t border-white/[0.08] w-full">
+              {t.cardTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-slate-300 group-hover:border-indigo-500/30 transition-colors"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </SpotlightCard>
         </div>
       </div>
