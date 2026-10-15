@@ -24,23 +24,23 @@ interface Project {
 
 const projects: Project[] = [
   {
-    name: "Système d'Information du Transport Ferroviaire (SNCFT)",
+    name: "Railway Transport Information System (SNCFT)",
     category: "internship",
-    year: "Stage Entreprise · 2026",
+    year: "Enterprise Internship · 2026",
     tag: "Enterprise System",
     description:
-      "Plateforme de gestion opérationnelle et de supervision du parc ferroviaire pour la Société Nationale des Chemins de Fer Tunisiens (SNCFT).",
+      "Enterprise web management and supervisory platform for the Tunisian National Railway Company (SNCFT). Features real-time fleet telemetry, automated CSV/XML data ingestion, and RBAC security.",
     architecture: "ASP.NET Core & Blazor · EF Core · MySQL · JWT Role-Based Security",
     stack: ["ASP.NET Core", "Blazor", "C#", "MySQL", "Entity Framework", "JWT"],
     isConfidential: true,
   },
   {
-    name: "NUMVIZ — Plateforme d'Analyse Numérique Interactive",
+    name: "NUMVIZ — Interactive Numerical Analysis Platform",
     category: "internship",
-    year: "Stage Entreprise · 2025",
+    year: "Company Internship · 2025",
     tag: "Interactive Platform",
     description:
-      "Plateforme pédagogique interactive d'analyse numérique avec moteur de rendu d'algorithmes mathématiques pas-à-pas et visualisations dynamiques.",
+      "Interactive educational platform for numerical analysis featuring step-by-step mathematical algorithm rendering and high-performance dynamic visualizations.",
     architecture: "FastAPI Backend · React + TS · Manim Visual Engine · CI/CD",
     stack: ["FastAPI", "Python", "React", "TypeScript", "Tailwind CSS", "Manim"],
     github: "https://github.com/sirineee22/numiviz",
@@ -49,21 +49,21 @@ const projects: Project[] = [
   {
     name: "CertifyPro — Distributed Certification Platform",
     category: "academic",
-    year: "Universitaire · 2025",
+    year: "University Project · 2025",
     tag: "Microservices & Cloud",
     description:
-      "Plateforme cloud-native d'évaluation et de certification en ligne orchestrée en 5 microservices indépendants Spring Boot et déploiement Kubernetes.",
+      "Cloud-native online examination and certification platform engineered across 5 decoupled microservices with dynamic Service Discovery, API Gateway routing, and automated Kubernetes orchestration.",
     architecture: "Eureka Discovery · API Gateway · PostgreSQL per service · Docker & K8s",
     stack: ["Spring Boot", "Spring Cloud", "Eureka", "PostgreSQL", "Docker", "Kubernetes"],
     github: "https://github.com/sirineee22/Esprit-PiProject-4SAE8-2026-CertifyPro",
   },
   {
-    name: "PromptForge — Test & Orchestration de Prompts",
+    name: "PromptForge — Developer Prompt Testing & Orchestration Studio",
     category: "hobby",
-    year: "Hobby · 2026",
+    year: "Hobby Project · 2026",
     tag: "AI Tooling & LLMs",
     description:
-      "Interface pour développeurs permettant de tester un même prompt sur plusieurs configurations (JSON strict, Markdown, YAML) avec comparaison de latence, coût en tokens et validation de qualité.",
+      "Developer studio for benchmarking and orchestrating LLM prompts across multiple output formats (Strict JSON, YAML, Markdown) with latency comparison, token cost analytics, and schema validation before code integration.",
     architecture: "FastAPI Backend · React + TS · Groq / Gemini API · Pydantic Validation",
     stack: ["FastAPI", "Python", "React", "TypeScript", "Groq / Gemini API", "Tailwind CSS"],
     github: "https://github.com/sirineee22",
@@ -71,10 +71,10 @@ const projects: Project[] = [
 ];
 
 const categories = [
-  { id: "all", label: "Tous (4)" },
-  { id: "internship", label: "Stages en Entreprise (2)" },
-  { id: "academic", label: "Projet Universitaire (1)" },
-  { id: "hobby", label: "Hobby & AI Tool (1)" },
+  { id: "all", label: "All (4)" },
+  { id: "internship", label: "Internships (2)" },
+  { id: "academic", label: "Academic Projects (1)" },
+  { id: "hobby", label: "Hobby & AI Tools (1)" },
 ];
 
 export function Projects() {
@@ -165,7 +165,7 @@ export function Projects() {
                   {p.isConfidential ? (
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono text-amber-300/90 w-full justify-center">
                       <Lock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                      <span>Système d'entreprise · Données confidentielles</span>
+                      <span>Enterprise System · Confidential Internal Data</span>
                     </div>
                   ) : (
                     <>

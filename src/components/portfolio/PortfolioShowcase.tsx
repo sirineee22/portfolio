@@ -53,29 +53,29 @@ interface ProjectItem {
 const projectsList: ProjectItem[] = [
   {
     id: "sncft",
-    title: "Système d'Information du Transport Ferroviaire (SNCFT)",
+    title: "Railway Transport Information System (SNCFT)",
     category: "internship",
-    categoryBadge: "Stage Entreprise",
-    description: "Plateforme web de gestion opérationnelle et de supervision du parc ferroviaire pour la Société Nationale des Chemins de Fer Tunisiens. Suivi de flotte en temps réel, ingestion automatisée CSV/XML et sécurité RBAC.",
+    categoryBadge: "Enterprise Internship",
+    description: "Enterprise web management and supervisory platform for the Tunisian National Railway Company (SNCFT). Features real-time fleet telemetry, automated CSV/XML data ingestion, and RBAC security.",
     tag: "Enterprise System",
     color: "#8b5cf6",
     isConfidential: true,
     architecture: "ASP.NET Core · Blazor · Entity Framework · MySQL · JWT",
     stack: ["ASP.NET Core", "Blazor", "C#", "MySQL", "Entity Framework", "JWT"],
     detailedPoints: [
-      "Gestion opérationnelle et supervision télémétrique de l'état du parc ferroviaire en production.",
-      "Création d'APIs REST modulaires et sécurisées avec contrôle d'accès basé sur les rôles (RBAC) via JWT.",
-      "Modules automatisés d'ingestion et de parsing de flux de données CSV/XML volumineux.",
-      "Déploiement en entreprise pour la Société Nationale des Chemins de Fer Tunisiens (SNCFT).",
-      "Données ferroviaires et code source soumis au secret professionnel d'entreprise.",
+      "Operational fleet management and telemetry monitoring of railway stock in production.",
+      "Engineered modular and secure REST APIs with JWT role-based access control (RBAC).",
+      "Built automated ingestion and parsing modules for high-volume CSV/XML data streams.",
+      "Enterprise production deployment for the Tunisian National Railway Company (SNCFT).",
+      "Railway telemetry and proprietary source code governed by corporate non-disclosure agreements.",
     ],
   },
   {
     id: "numviz",
-    title: "NUMVIZ — Plateforme d'Analyse Numérique Interactive",
+    title: "NUMVIZ — Interactive Numerical Analysis Platform",
     category: "internship",
-    categoryBadge: "Stage Entreprise",
-    description: "Plateforme pédagogique interactive d'analyse numérique avec moteur de rendu d'algorithmes mathématiques pas-à-pas et visualisations dynamiques haute performance.",
+    categoryBadge: "Company Internship",
+    description: "Interactive educational platform for numerical analysis featuring step-by-step mathematical algorithm rendering and high-performance dynamic visualizations.",
     tag: "Interactive Platform",
     color: "#10b981",
     github: "https://github.com/sirineee22/numiviz",
@@ -83,50 +83,50 @@ const projectsList: ProjectItem[] = [
     architecture: "FastAPI Backend · React + TS · Manim Visual Engine · CI/CD",
     stack: ["FastAPI", "Python", "React", "TypeScript", "Tailwind CSS", "Manim"],
     detailedPoints: [
-      "Plateforme éducative interactive dédiée à l'apprentissage et à la résolution des méthodes numériques.",
-      "Visualisation dynamique pas-à-pas des algorithmes mathématiques complexes (Manim & Canvas).",
-      "Architecture backend haute performance développée avec FastAPI et Python.",
-      "Interface utilisateur réactive en React, TypeScript et Tailwind CSS avec rendu temps réel.",
-      "Intégration continue (CI/CD) et déploiement cloud automatisé en production sur Vercel.",
+      "Interactive educational platform dedicated to exploring and solving numerical analysis methods.",
+      "Step-by-step dynamic visualization of complex mathematical algorithms (Manim & HTML5 Canvas).",
+      "High-performance asynchronous backend architecture built with FastAPI and Python.",
+      "Responsive user interface in React, TypeScript, and Tailwind CSS with real-time graph rendering.",
+      "Continuous integration (CI/CD) and automated cloud production deployment on Vercel.",
     ],
   },
   {
     id: "certifypro",
     title: "CertifyPro — Distributed Certification Platform",
     category: "academic",
-    categoryBadge: "Projet Universitaire",
-    description: "Plateforme cloud-native d'évaluation et de certification en ligne architecturée en 5 microservices indépendants avec Service Discovery, API Gateway et déploiement automatisé Kubernetes.",
+    categoryBadge: "University Project",
+    description: "Cloud-native online examination and certification platform engineered across 5 decoupled microservices with dynamic Service Discovery, API Gateway routing, and automated Kubernetes orchestration.",
     tag: "Microservices & Cloud",
     color: "#6366f1",
     github: "https://github.com/sirineee22/Esprit-PiProject-4SAE8-2026-CertifyPro",
     architecture: "5 Microservices · Spring Cloud Gateway · Eureka · PostgreSQL · K8s",
     stack: ["Spring Boot", "Spring Cloud", "Eureka", "K8s", "Docker", "PostgreSQL"],
     detailedPoints: [
-      "Système distribué d'examens et certifications découpé en 5 microservices indépendants Spring Boot.",
-      "Enregistrement dynamique et découverte de services automatisée via Spring Cloud Netflix Eureka.",
-      "Point d'entrée unique et filtrage unifié des requêtes avec Spring Cloud Gateway.",
-      "Persistance avec PostgreSQL par microservice suivant le pattern Database-per-Service.",
-      "Conteneurisation Docker multi-stages et déploiement orchestré sur cluster Kubernetes.",
+      "Distributed certification and exam engine decomposed into 5 autonomous Spring Boot microservices.",
+      "Dynamic service registration and automated discovery via Spring Cloud Netflix Eureka.",
+      "Unified client entry point and secure request routing with Spring Cloud Gateway.",
+      "Isolated PostgreSQL database per microservice adhering to the Database-per-Service pattern.",
+      "Multi-stage Docker containerization and orchestrated deployment on a Kubernetes cluster.",
     ],
   },
   {
     id: "promptforge",
-    title: "PromptForge — Test & Orchestration de Prompts",
+    title: "PromptForge — Developer Prompt Testing & Orchestration Studio",
     category: "hobby",
-    categoryBadge: "Projet Hobby · AI Tool",
-    description: "Interface pour développeurs permettant de tester et benchmarker un même prompt sur multiples formats (JSON strict, YAML, Markdown) avec comparaison de latence, estimation du coût en tokens et validation de schéma avant intégration dans le code.",
+    categoryBadge: "Hobby Project · AI Tool",
+    description: "Developer studio for benchmarking and orchestrating LLM prompts across multiple output formats (Strict JSON, YAML, Markdown) with latency comparison, token cost analytics, and schema validation before code integration.",
     tag: "AI Tooling & LLMs",
     color: "#06b6d4",
     github: "https://github.com/sirineee22",
     architecture: "FastAPI Backend · React + TS · Groq / Gemini API · Schema Validation",
     stack: ["Python", "FastAPI", "React", "TypeScript", "Groq / Gemini API", "Tailwind CSS"],
-    highlight: "Orienté outillage pour ingénieurs · Intégration moderne d'APIs d'intelligence artificielle",
+    highlight: "Engineered for developer productivity · Modern integration with generative AI APIs",
     detailedPoints: [
-      "Studio d'orchestration et banc de test comparatif (benchmarking) de prompts pour développeurs et ingénieurs IA.",
-      "Comparaison instantanée des temps de latence et débits de réponse via APIs Groq et Gemini.",
-      "Estimation en temps réel de la consommation et du coût financier en tokens d'entrée et sortie.",
-      "Validation de conformité et formatage strict : JSON Strict, YAML et Markdown.",
-      "Culture produit orientée outillage pour ingénieurs (developer tooling) avec frontend React épuré.",
+      "Prompt orchestration studio and comparative benchmarking testbed for software and AI engineers.",
+      "Instant latency measurement and response comparison across Groq and Gemini API configurations.",
+      "Real-time token estimation with projected cost analytics for prompt inputs and outputs.",
+      "Strict schema compliance verification and structured formatting: JSON Strict, YAML, and Markdown.",
+      "Developer-tooling product focus with a minimalist, high-productivity React interface.",
     ],
   },
 ];
@@ -247,10 +247,10 @@ export function PortfolioShowcase() {
   const [previewTitle, setPreviewTitle] = useState("");
 
   const projectFilterTabs: { id: "all" | "internship" | "academic" | "hobby"; label: string; count: number }[] = [
-    { id: "all", label: "Tous", count: projectsList.length },
-    { id: "internship", label: "Stages en Entreprise", count: 2 },
-    { id: "academic", label: "Projet Universitaire", count: 1 },
-    { id: "hobby", label: "Hobby & AI Tool", count: 1 },
+    { id: "all", label: "All", count: projectsList.length },
+    { id: "internship", label: "Internships", count: 2 },
+    { id: "academic", label: "Academic Projects", count: 1 },
+    { id: "hobby", label: "Hobby & AI Tools", count: 1 },
   ];
 
   const displayedProjects = projectsList.filter(
@@ -449,7 +449,7 @@ export function PortfolioShowcase() {
                         {project.isConfidential ? (
                           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono text-amber-300/90 w-full justify-center">
                             <Lock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                            <span>Système d'entreprise · Données confidentielles</span>
+                            <span>Enterprise System · Confidential Internal Data</span>
                           </div>
                         ) : (
                           <>
@@ -627,7 +627,7 @@ export function PortfolioShowcase() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-white">
-                        Technologie sélectionnée :
+                        Selected Technology:
                       </span>
                       <span className="text-xs font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                         {selectedTech.name}
@@ -642,7 +642,7 @@ export function PortfolioShowcase() {
                         )
                       ).length > 0 ? (
                         <>
-                          Utilisé dans :{" "}
+                          Used in:{" "}
                           <span className="text-white font-semibold">
                             {projectsList
                               .filter((p) =>
@@ -657,7 +657,7 @@ export function PortfolioShowcase() {
                           </span>
                         </>
                       ) : (
-                        "Compétence technique intégrée dans la formation en génie logiciel et architectures distribuées."
+                        "Core engineering competency integrated into distributed software architecture coursework."
                       )}
                     </p>
                   </div>
@@ -671,13 +671,13 @@ export function PortfolioShowcase() {
                     }}
                     className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold text-white transition shadow-lg flex items-center gap-1.5 cursor-pointer"
                   >
-                    <span>Explorer les projets</span>
+                    <span>Explore Projects</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => setSelectedTech(null)}
                     className="p-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-400 hover:text-white transition cursor-pointer"
-                    aria-label="Fermer"
+                    aria-label="Close"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -711,7 +711,7 @@ export function PortfolioShowcase() {
               <button
                 onClick={() => setSelectedProject(null)}
                 className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition cursor-pointer"
-                aria-label="Fermer"
+                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -741,7 +741,7 @@ export function PortfolioShowcase() {
             {/* Detailed Points & Achievements */}
             <div className="mb-6">
               <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5 font-semibold">
-                Points clés &amp; Réalisations techniques
+                Key Highlights &amp; Technical Deliverables
               </h4>
               <ul className="space-y-2">
                 {selectedProject.detailedPoints.map((pt, i) => (
@@ -764,7 +764,7 @@ export function PortfolioShowcase() {
             {/* Tech Stack Chips */}
             <div className="mb-6">
               <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2 font-semibold">
-                Technologies &amp; Outils
+                Technologies &amp; Tools
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedProject.stack.map((s) => (
@@ -783,7 +783,7 @@ export function PortfolioShowcase() {
               {selectedProject.isConfidential ? (
                 <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs font-mono text-amber-300/90 w-full justify-center">
                   <Lock className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Système interne d'entreprise · Données confidentielles (SNCFT)</span>
+                  <span>Internal Enterprise System · Confidential Company Data (SNCFT)</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-3 w-full justify-end">
@@ -795,7 +795,7 @@ export function PortfolioShowcase() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-xs font-semibold text-emerald-300 hover:text-white transition shadow-[0_0_15px_rgba(16,185,129,0.2)]"
                     >
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Ouvrir la Démo Live</span>
+                      <span>Open Live Demo</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -808,7 +808,7 @@ export function PortfolioShowcase() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] text-xs font-semibold text-white transition hover:scale-105"
                     >
                       <Github className="w-4 h-4 text-slate-300" />
-                      <span>Code Source GitHub</span>
+                      <span>View GitHub Source</span>
                     </a>
                   )}
                 </div>
