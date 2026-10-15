@@ -110,16 +110,17 @@ export function Hero() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: SCALED BENTO PROFILE CARD WITH DYNAMIC STATUS & TECH TAGS */}
+        {/* RIGHT COLUMN: CIRCULAR PROFILE PHOTO IN MINIMALIST CARD WITH CREATIVE ANIMATIONS */}
         <div className="lg:col-span-5 flex justify-center items-center relative z-10">
+
           <SpotlightCard
             spotlightColor="rgba(99, 102, 241, 0.25)"
-            className="w-full max-w-[360px] sm:max-w-[380px] p-7 sm:p-8 rounded-3xl border border-white/[0.12] bg-[#0c1222]/95 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center group transition-all duration-300 hover:scale-[1.02] hover:border-indigo-500/40 hover:shadow-[0_20px_50px_rgba(99,102,241,0.2)]"
+            className="w-full max-w-[340px] sm:max-w-[380px] p-7 sm:p-8 rounded-3xl border-white/[0.12] bg-[#0c1222]/90 shadow-2xl flex flex-col items-center text-center group transition-all duration-300 hover:scale-[1.02]"
           >
             {/* Avatar with Rotating Halo */}
             <div className="relative mb-5">
               <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-indigo-500 via-violet-500 to-cyan-400 opacity-75 blur-md animate-rotate-halo group-hover:opacity-100 transition-opacity" />
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden bg-[#030712] border-2 border-white/[0.2] shadow-2xl">
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden bg-[#030712] border-2 border-white/[0.2] shadow-inner">
                 <img
                   src={profilePhoto}
                   alt="Dahmane Sirine"
@@ -128,10 +129,12 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Role Title */}
-            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
-              {t.role}
+            <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+              Dahmane Sirine
             </h3>
+            <p className="text-xs sm:text-sm font-mono text-slate-400 mt-1">
+              Software Engineer
+            </p>
           </SpotlightCard>
         </div>
       </div>

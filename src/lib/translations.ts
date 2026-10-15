@@ -52,9 +52,6 @@ export const translations = {
       location: "Ariana, Tunisia",
       letsConnect: "Let's make something great",
       role: "Software Engineer",
-      cardStatus: "Open to PFE & Full-Time",
-      cardLocation: "Ariana, Tunisia · Remote Ready",
-      cardTags: ["Spring Boot", "FastAPI", "React", "Docker", "PostgreSQL"],
     },
     about: {
       title: "About Me",
@@ -149,10 +146,7 @@ export const translations = {
       downloadCv: "Télécharger mon CV",
       location: "Ariana, Tunisie",
       letsConnect: "Créons ensemble quelque chose d'unique",
-      role: "Software Engineer",
-      cardStatus: "Disponible PFE (6 Mois) & CDI",
-      cardLocation: "Ariana, Tunisie · Télétravail & Mobilité",
-      cardTags: ["Spring Boot", "FastAPI", "React", "Docker", "PostgreSQL"],
+      role: "Élève-Ingénieure Logiciel",
     },
     about: {
       title: "À Propos de Moi",
