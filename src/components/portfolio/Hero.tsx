@@ -8,8 +8,12 @@ import {
 } from "lucide-react";
 import profilePhoto from "@/assets/me.png";
 import { SpotlightCard } from "./SpotlightCard";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export function Hero() {
+  const { lang } = useLanguage();
+  const t = translations[lang].hero;
 
   return (
     <section
@@ -26,19 +30,19 @@ export function Hero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             <span className="text-xs font-mono text-slate-300">
-              Dahmane Sirine · Available for 6-Month PFE Internship
+              {t.statusBadge}
             </span>
           </div>
 
           {/* Main Headline from User's Screenshot */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.12] mb-5 font-sans">
-            A curious mind.<br />
-            <span className="gradient-text-accent">An engineering mindset.</span>
+            {t.headlineMain}<br />
+            <span className="gradient-text-accent">{t.headlineAccent}</span>
           </h1>
 
           {/* Subheading text from User's Screenshot */}
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl mb-8 font-sans">
-            Final-year Software Engineering Student &amp; Full-Stack Developer. From railway operations to developer LLM tooling &amp; microservices — I build software that solves real problems.
+            {t.subtitle}
           </p>
 
           {/* CTA Buttons from User's Screenshot */}
@@ -47,7 +51,7 @@ export function Hero() {
               href="#projects"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-slate-950 font-semibold text-sm hover:bg-slate-200 transition-all shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
             >
-              <span>Explore my work</span>
+              <span>{t.exploreBtn}</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
 
@@ -57,7 +61,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-white font-medium text-sm transition-all hover:scale-105 cursor-pointer"
             >
               <Download className="w-4 h-4 text-indigo-400" />
-              <span>Download CV</span>
+              <span>{t.downloadCv}</span>
             </a>
           </div>
 
@@ -65,13 +69,13 @@ export function Hero() {
           <div className="flex flex-wrap items-center gap-5 text-xs sm:text-sm text-slate-400 mb-6">
             <div className="flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-slate-400" />
-              <span>Ariana, Tunisia</span>
+              <span>{t.location}</span>
             </div>
             <a
               href="#contact"
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors"
             >
-              <span>Let&apos;s make something great</span>
+              <span>{t.letsConnect}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>

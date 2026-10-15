@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
 import { TechBrandIcon } from "./TechBrandIcon";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations, projectsTranslations } from "@/lib/translations";
 
 // Certificate images from lescertifs
 import neo4jFundamentalsImg from "@/assets/certificates/1bigdata.PNG";
@@ -50,86 +52,39 @@ interface ProjectItem {
   detailedPoints: string[];
 }
 
-const projectsList: ProjectItem[] = [
+const staticProjectsMeta: Record<
+  string,
   {
-    id: "sncft",
-    title: "Railway Transport Information System (SNCFT)",
-    category: "internship",
-    categoryBadge: "Enterprise Internship",
-    description: "Enterprise web management and supervisory platform for the Tunisian National Railway Company (SNCFT). Features real-time fleet telemetry, automated CSV/XML data ingestion, and RBAC security.",
-    tag: "Enterprise System",
+    color: string;
+    stack: string[];
+    isConfidential?: boolean;
+    github?: string;
+    demo?: string;
+  }
+> = {
+  sncft: {
     color: "#8b5cf6",
     isConfidential: true,
-    architecture: "ASP.NET Core · Blazor · Entity Framework · MySQL · JWT",
     stack: ["ASP.NET Core", "Blazor", "C#", "MySQL", "Entity Framework", "JWT"],
-    detailedPoints: [
-      "Operational fleet management and telemetry monitoring of railway stock in production.",
-      "Engineered modular and secure REST APIs with JWT role-based access control (RBAC).",
-      "Built automated ingestion and parsing modules for high-volume CSV/XML data streams.",
-      "Enterprise production deployment for the Tunisian National Railway Company (SNCFT).",
-      "Railway telemetry and proprietary source code governed by corporate non-disclosure agreements.",
-    ],
   },
-  {
-    id: "numviz",
-    title: "NUMVIZ — Interactive Numerical Analysis Platform",
-    category: "internship",
-    categoryBadge: "Company Internship",
-    description: "Interactive educational platform for numerical analysis featuring step-by-step mathematical algorithm rendering and high-performance dynamic visualizations.",
-    tag: "Interactive Platform",
+  numviz: {
     color: "#10b981",
     github: "https://github.com/sirineee22/numiviz",
     demo: "https://numiviz-fe4c.vercel.app/",
-    architecture: "FastAPI Backend · React + TS · Manim Visual Engine · CI/CD",
     stack: ["FastAPI", "Python", "React", "TypeScript", "Tailwind CSS", "Manim"],
-    detailedPoints: [
-      "Interactive educational platform dedicated to exploring and solving numerical analysis methods.",
-      "Step-by-step dynamic visualization of complex mathematical algorithms (Manim & HTML5 Canvas).",
-      "High-performance asynchronous backend architecture built with FastAPI and Python.",
-      "Responsive user interface in React, TypeScript, and Tailwind CSS with real-time graph rendering.",
-      "Continuous integration (CI/CD) and automated cloud production deployment on Vercel.",
-    ],
   },
-  {
-    id: "certifypro",
-    title: "CertifyPro — Distributed Certification Platform",
-    category: "academic",
-    categoryBadge: "University Project",
-    description: "Cloud-native online examination and certification platform engineered across 5 decoupled microservices with dynamic Service Discovery, API Gateway routing, and automated Kubernetes orchestration.",
-    tag: "Microservices & Cloud",
+  certifypro: {
     color: "#6366f1",
     github: "https://github.com/sirineee22/Esprit-PiProject-4SAE8-2026-CertifyPro",
-    architecture: "5 Microservices · Spring Cloud Gateway · Eureka · PostgreSQL · K8s",
     stack: ["Spring Boot", "Spring Cloud", "Eureka", "K8s", "Docker", "PostgreSQL"],
-    detailedPoints: [
-      "Distributed certification and exam engine decomposed into 5 autonomous Spring Boot microservices.",
-      "Dynamic service registration and automated discovery via Spring Cloud Netflix Eureka.",
-      "Unified client entry point and secure request routing with Spring Cloud Gateway.",
-      "Isolated PostgreSQL database per microservice adhering to the Database-per-Service pattern.",
-      "Multi-stage Docker containerization and orchestrated deployment on a Kubernetes cluster.",
-    ],
   },
-  {
-    id: "promptforge",
-    title: "PromptForge — Developer Prompt Testing & Orchestration Studio",
-    category: "hobby",
-    categoryBadge: "Hobby Project · AI Tool",
-    description: "Developer studio for benchmarking and orchestrating LLM prompts across multiple output formats (Strict JSON, YAML, Markdown) with latency comparison, token cost analytics, and schema validation before code integration.",
-    tag: "AI Tooling & LLMs",
+  promptforge: {
     color: "#06b6d4",
     github: "https://github.com/sirineee22",
-    architecture: "FastAPI Backend · React + TS · Groq / Gemini API · Schema Validation",
     stack: ["Python", "FastAPI", "React", "TypeScript", "Groq / Gemini API", "Tailwind CSS"],
-    highlight: "Engineered for developer productivity · Modern integration with generative AI APIs",
-    detailedPoints: [
-      "Prompt orchestration studio and comparative benchmarking testbed for software and AI engineers.",
-      "Instant latency measurement and response comparison across Groq and Gemini API configurations.",
-      "Real-time token estimation with projected cost analytics for prompt inputs and outputs.",
-      "Strict schema compliance verification and structured formatting: JSON Strict, YAML, and Markdown.",
-      "Developer-tooling product focus with a minimalist, high-productivity React interface.",
-    ],
   },
-];
+};
+
 
 interface CertificateItem {
   id: string;
@@ -236,21 +191,33 @@ const techIcons: TechIconItem[] = [
 ];
 
 export function PortfolioShowcase() {
+  const { lang } = useLanguage();
+  const t = translations[lang].showcase;
+
   const [activeTab, setActiveTab] = useState<TabType>("projects");
   const [projectCategory, setProjectCategory] = useState<"all" | "internship" | "academic" | "hobby">("all");
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [selectedTech, setSelectedTech] = useState<TechIconItem | null>(null);
   const [clickedCardId, setClickedCardId] = useState<string | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [previewTitle, setPreviewTitle] = useState("");
 
+  const projectsList: ProjectItem[] = projectsTranslations[lang].map((p) => ({
+    ...p,
+    ...staticProjectsMeta[p.id],
+  }));
+
+  const selectedProject = selectedProjectId
+    ? projectsList.find((p) => p.id === selectedProjectId) || null
+    : null;
+
   const projectFilterTabs: { id: "all" | "internship" | "academic" | "hobby"; label: string; count: number }[] = [
-    { id: "all", label: "All", count: projectsList.length },
-    { id: "internship", label: "Internships", count: 2 },
-    { id: "academic", label: "Academic Projects", count: 1 },
-    { id: "hobby", label: "Hobby & AI Tools", count: 1 },
+    { id: "all", label: t.filterAll, count: projectsList.length },
+    { id: "internship", label: t.filterInternships, count: 2 },
+    { id: "academic", label: t.filterAcademic, count: 1 },
+    { id: "hobby", label: t.filterHobby, count: 1 },
   ];
 
   const displayedProjects = projectsList.filter(
@@ -269,7 +236,7 @@ export function PortfolioShowcase() {
     setClickedCardId(project.id);
     setTimeout(() => {
       setClickedCardId(null);
-      setSelectedProject(project);
+      setSelectedProjectId(project.id);
     }, 140);
   };
 
@@ -291,7 +258,7 @@ export function PortfolioShowcase() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setSelectedProject(null);
+        setSelectedProjectId(null);
         setPreviewImage(null);
       }
     };
@@ -305,10 +272,10 @@ export function PortfolioShowcase() {
         {/* SECTION HEADER MATCHING SCREENSHOT */}
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-3">
-            <span className="gradient-text-accent">Portfolio Showcase</span>
+            <span className="gradient-text-accent">{t.sectionTitle}</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-            Explore my journey through projects, certifications, and technical expertise. Click any card to inspect full architecture details, metrics, and live systems.
+            {t.sectionSubtitle}
           </p>
         </div>
 
@@ -323,7 +290,7 @@ export function PortfolioShowcase() {
             }`}
           >
             <Code2 className="w-4 h-4 text-indigo-400" />
-            <span>Projects</span>
+            <span>{t.tabProjects}</span>
           </button>
 
           <button
@@ -335,7 +302,7 @@ export function PortfolioShowcase() {
             }`}
           >
             <Award className="w-4 h-4 text-violet-400" />
-            <span>Certificates</span>
+            <span>{t.tabCertificates}</span>
           </button>
 
           <button
@@ -347,7 +314,7 @@ export function PortfolioShowcase() {
             }`}
           >
             <Layers className="w-4 h-4 text-cyan-400" />
-            <span>Tech Stack</span>
+            <span>{t.tabTechStack}</span>
           </button>
         </div>
 
@@ -449,7 +416,7 @@ export function PortfolioShowcase() {
                         {project.isConfidential ? (
                           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono text-amber-300/90 w-full justify-center">
                             <Lock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                            <span>Enterprise System · Confidential Internal Data</span>
+                            <span>{t.confidentialBanner}</span>
                           </div>
                         ) : (
                           <>
@@ -498,7 +465,7 @@ export function PortfolioShowcase() {
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.09] hover:border-indigo-500/40 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white transition-all shadow-md hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] cursor-pointer group active:scale-95"
                 >
                   <span>
-                    {showAllProjects ? "Show less" : `Show more (${displayedProjects.length - 3} more)`}
+                    {showAllProjects ? t.showLess : `${t.showMore} (${displayedProjects.length - 3} more)`}
                   </span>
                   {showAllProjects ? (
                     <ChevronUp className="w-4 h-4 text-indigo-400 group-hover:-translate-y-0.5 transition-transform" />
@@ -535,7 +502,7 @@ export function PortfolioShowcase() {
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-white text-xs font-mono backdrop-blur-[2px]">
                       <Maximize2 className="w-4 h-4" />
-                      <span>Click to Enlarge</span>
+                      <span>{t.clickEnlarge}</span>
                     </div>
                   </div>
 
@@ -565,7 +532,7 @@ export function PortfolioShowcase() {
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.09] hover:border-violet-500/40 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white transition-all shadow-md hover:shadow-[0_0_20px_rgba(139,92,246,0.2)] cursor-pointer group active:scale-95"
                 >
                   <span>
-                    {showAllCertificates ? "Show less" : `Show more (${certificatesList.length - 3} more)`}
+                    {showAllCertificates ? t.showLess : `${t.showMore} (${certificatesList.length - 3} more)`}
                   </span>
                   {showAllCertificates ? (
                     <ChevronUp className="w-4 h-4 text-violet-400 group-hover:-translate-y-0.5 transition-transform" />
@@ -627,7 +594,7 @@ export function PortfolioShowcase() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-white">
-                        Selected Technology:
+                        {t.drawerSelectedTech}
                       </span>
                       <span className="text-xs font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                         {selectedTech.name}
@@ -642,7 +609,7 @@ export function PortfolioShowcase() {
                         )
                       ).length > 0 ? (
                         <>
-                          Used in:{" "}
+                          {t.drawerUsedIn}{" "}
                           <span className="text-white font-semibold">
                             {projectsList
                               .filter((p) =>
@@ -657,7 +624,7 @@ export function PortfolioShowcase() {
                           </span>
                         </>
                       ) : (
-                        "Core engineering competency integrated into distributed software architecture coursework."
+                        t.drawerCoursework
                       )}
                     </p>
                   </div>
@@ -671,7 +638,7 @@ export function PortfolioShowcase() {
                     }}
                     className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold text-white transition shadow-lg flex items-center gap-1.5 cursor-pointer"
                   >
-                    <span>Explore Projects</span>
+                    <span>{t.drawerExploreBtn}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   <button
@@ -691,7 +658,7 @@ export function PortfolioShowcase() {
       {/* FULL INTERACTIVE PROJECT DETAIL MODAL WITH SMOOTH SCALE-IN ANIMATION */}
       {selectedProject && (
         <div
-          onClick={() => setSelectedProject(null)}
+          onClick={() => setSelectedProjectId(null)}
           className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fade-in"
         >
           <div
@@ -709,7 +676,7 @@ export function PortfolioShowcase() {
                 </span>
               </div>
               <button
-                onClick={() => setSelectedProject(null)}
+                onClick={() => setSelectedProjectId(null)}
                 className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition cursor-pointer"
                 aria-label="Close"
               >
@@ -731,7 +698,7 @@ export function PortfolioShowcase() {
             <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] mb-5">
               <div className="flex items-center gap-2 mb-1.5 text-xs font-mono uppercase tracking-wider text-indigo-400 font-semibold">
                 <Layers className="w-4 h-4" />
-                <span>Architecture &amp; Core Patterns</span>
+                <span>{t.modalArchitecture}</span>
               </div>
               <p className="text-xs sm:text-sm font-semibold text-white font-mono">
                 {selectedProject.architecture}
@@ -741,7 +708,7 @@ export function PortfolioShowcase() {
             {/* Detailed Points & Achievements */}
             <div className="mb-6">
               <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5 font-semibold">
-                Key Highlights &amp; Technical Deliverables
+                {t.modalHighlights}
               </h4>
               <ul className="space-y-2">
                 {selectedProject.detailedPoints.map((pt, i) => (
@@ -764,7 +731,7 @@ export function PortfolioShowcase() {
             {/* Tech Stack Chips */}
             <div className="mb-6">
               <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2 font-semibold">
-                Technologies &amp; Tools
+                {t.modalTech}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedProject.stack.map((s) => (
@@ -783,7 +750,7 @@ export function PortfolioShowcase() {
               {selectedProject.isConfidential ? (
                 <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs font-mono text-amber-300/90 w-full justify-center">
                   <Lock className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Internal Enterprise System · Confidential Company Data (SNCFT)</span>
+                  <span>{t.modalConfidential}</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-3 w-full justify-end">
@@ -795,7 +762,7 @@ export function PortfolioShowcase() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-xs font-semibold text-emerald-300 hover:text-white transition shadow-[0_0_15px_rgba(16,185,129,0.2)]"
                     >
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Open Live Demo</span>
+                      <span>{t.modalLiveDemo}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -808,7 +775,7 @@ export function PortfolioShowcase() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] text-xs font-semibold text-white transition hover:scale-105"
                     >
                       <Github className="w-4 h-4 text-slate-300" />
-                      <span>View GitHub Source</span>
+                      <span>{t.modalGithub}</span>
                     </a>
                   )}
                 </div>

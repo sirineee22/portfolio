@@ -4,22 +4,25 @@ import {
   Github,
   Linkedin,
   Send,
-  Sparkles,
   Copy,
   Check,
   MapPin,
 } from "lucide-react";
 import { toast } from "sonner";
 import { SpotlightCard } from "./SpotlightCard";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export function Contact() {
   const [sending, setSending] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const { lang } = useLanguage();
+  const t = translations[lang].contact;
 
   const copyEmail = () => {
     navigator.clipboard.writeText("dahmane.sirine@esprit.tn");
     setCopiedEmail(true);
-    toast.success("Email copied to clipboard: dahmane.sirine@esprit.tn");
+    toast.success("Email copied: dahmane.sirine@esprit.tn");
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
@@ -61,9 +64,7 @@ export function Contact() {
       const result = await response.json().catch(() => null);
 
       if (response.ok && (!result || result.success !== "false")) {
-        toast.success(
-          "Thank you! Your message has been sent to Dahmane Sirine. I will get back to you shortly."
-        );
+        toast.success(t.successToast);
         form.reset();
       } else {
         // Fallback to mailto client
@@ -72,7 +73,7 @@ export function Contact() {
         )}&body=${encodeURIComponent(
           `From: ${senderName} (${senderEmail})\n\n${message}`
         )}`;
-        toast.info("Opening your email client to send the message directly...");
+        toast.info(t.fallbackToast);
       }
     } catch {
       // If network or adblocker interrupts fetch, trigger direct email
@@ -81,7 +82,7 @@ export function Contact() {
       )}&body=${encodeURIComponent(
         `From: ${senderName} (${senderEmail})\n\n${message}`
       )}`;
-      toast.info("Opening your email client to send the message directly...");
+      toast.info(t.fallbackToast);
     } finally {
       setSending(false);
     }
@@ -93,10 +94,10 @@ export function Contact() {
         {/* SECTION HEADER */}
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-            Contact Me
+            {t.title}
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 font-mono">
-            Open to 6-month PFE internships and software engineering opportunities
+            {t.subtitle}
           </p>
         </div>
 
@@ -108,10 +109,10 @@ export function Contact() {
           >
             <div>
               <h3 className="text-lg font-bold text-white tracking-tight mb-1">
-                Direct Channels
+                {t.directChannels}
               </h3>
               <p className="text-xs text-slate-400 mb-5 font-mono">
-                Fastest response via email
+                {t.directDesc}
               </p>
 
               <div className="space-y-2.5 mb-6">
@@ -123,7 +124,7 @@ export function Contact() {
                     </div>
                     <div className="min-w-0">
                       <p className="text-[10px] font-mono text-slate-400 uppercase">
-                        Email
+                        {t.emailLabel}
                       </p>
                       <a
                         href="mailto:dahmane.sirine@esprit.tn"
@@ -153,10 +154,10 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="text-[10px] font-mono text-slate-400 uppercase">
-                      Location
+                      {t.locationLabel}
                     </p>
                     <p className="text-xs text-white">
-                      Tunis, Tunisia · Remote Ready
+                      {t.locationValue}
                     </p>
                   </div>
                 </div>
@@ -193,33 +194,33 @@ export function Contact() {
           >
             <form onSubmit={onSubmit} className="space-y-3.5">
               <h3 className="text-lg font-bold text-white tracking-tight mb-1">
-                Send a Message
+                {t.formTitle}
               </h3>
               <p className="text-xs text-slate-400 mb-4 font-mono">
-                Leave a quick note and I'll reply promptly
+                {t.formSubtitle}
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3">
                 <div>
                   <label className="text-[11px] font-mono text-slate-400 mb-1 block">
-                    Your Name
+                    {t.nameLabel}
                   </label>
                   <input
                     required
                     name="name"
-                    placeholder="Name"
+                    placeholder={t.namePlaceholder}
                     className="w-full bg-[#030712]/80 border border-white/[0.09] rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition"
                   />
                 </div>
                 <div>
                   <label className="text-[11px] font-mono text-slate-400 mb-1 block">
-                    Your Email
+                    {t.emailInputLabel}
                   </label>
                   <input
                     required
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t.emailPlaceholder}
                     className="w-full bg-[#030712]/80 border border-white/[0.09] rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition"
                   />
                 </div>
@@ -227,25 +228,25 @@ export function Contact() {
 
               <div>
                 <label className="text-[11px] font-mono text-slate-400 mb-1 block">
-                  Subject
+                  {t.subjectLabel}
                 </label>
                 <input
                   required
                   name="subject"
-                  placeholder="Internship / Engineering Project"
+                  placeholder={t.subjectPlaceholder}
                   className="w-full bg-[#030712]/80 border border-white/[0.09] rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition"
                 />
               </div>
 
               <div>
                 <label className="text-[11px] font-mono text-slate-400 mb-1 block">
-                  Message
+                  {t.messageLabel}
                 </label>
                 <textarea
                   required
                   name="message"
                   rows={4}
-                  placeholder="Message..."
+                  placeholder={t.messagePlaceholder}
                   className="w-full bg-[#030712]/80 border border-white/[0.09] rounded-xl px-3.5 py-2 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition resize-none"
                 />
               </div>
@@ -255,7 +256,7 @@ export function Contact() {
                 disabled={sending}
                 className="w-full pro-btn-primary py-2.5 cursor-pointer disabled:opacity-60 text-xs"
               >
-                <span>{sending ? "Sending..." : "Send Message"}</span>
+                <span>{sending ? t.sendingBtn : t.sendBtn}</span>
                 <Send className="w-3.5 h-3.5" />
               </button>
             </form>

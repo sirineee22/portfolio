@@ -1,6 +1,11 @@
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export function Footer() {
+  const { lang } = useLanguage();
+  const t = translations[lang].footer;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -15,7 +20,7 @@ export function Footer() {
           <div>
             <p className="font-semibold text-white">Dahmane Sirine</p>
             <p className="font-mono text-[11px] text-slate-500">
-              Distributed Systems · Cloud-Native · ESPRIT '27
+              {t.roleSubtitle}
             </p>
           </div>
         </div>
@@ -23,7 +28,7 @@ export function Footer() {
         {/* Status Pill */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] font-mono text-[11px] text-slate-300">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Available for 6-Month PFE Internship</span>
+          <span>{t.status}</span>
         </div>
 
         <div className="flex items-center gap-4">

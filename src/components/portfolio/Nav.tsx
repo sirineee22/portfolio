@@ -2,28 +2,30 @@ import { useState, useEffect } from "react";
 import {
   Home,
   User,
-  Code2,
   FolderGit2,
   Briefcase,
   GraduationCap,
-  Award,
   Mail,
   Download,
-  Sparkles,
+  Globe,
 } from "lucide-react";
-
-const navItems = [
-  { href: "#top", label: "Home", icon: Home },
-  { href: "#about", label: "About", icon: User },
-  { href: "#projects", label: "Showcase", icon: FolderGit2 },
-  { href: "#experience", label: "Experience", icon: Briefcase },
-  { href: "#education", label: "Education", icon: GraduationCap },
-  { href: "#contact", label: "Contact", icon: Mail },
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export function Nav() {
   const [active, setActive] = useState("#top");
   const [scrolled, setScrolled] = useState(false);
+  const { lang, toggleLang } = useLanguage();
+  const t = translations[lang].nav;
+
+  const navItems = [
+    { href: "#top", label: t.home, icon: Home },
+    { href: "#about", label: t.about, icon: User },
+    { href: "#projects", label: t.showcase, icon: FolderGit2 },
+    { href: "#experience", label: t.experience, icon: Briefcase },
+    { href: "#education", label: t.education, icon: GraduationCap },
+    { href: "#contact", label: t.contact, icon: Mail },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,8 +62,6 @@ export function Nav() {
             : "bg-[#0b101e]/60 border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.3)] backdrop-blur-xl"
         }`}
       >
-
-
         {/* Navigation Items */}
         <div className="flex items-center gap-1">
           {navItems.map((item) => {
@@ -93,6 +93,23 @@ export function Nav() {
 
         <div className="h-4 w-[1px] bg-white/10 mx-1" />
 
+        {/* Language Switcher: EN / FR */}
+        <button
+          onClick={toggleLang}
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-semibold bg-white/[0.05] hover:bg-white/[0.12] border border-white/[0.1] text-slate-200 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95 group"
+          title={lang === "en" ? "Passer le portfolio en Français" : "Switch portfolio to English"}
+          aria-label="Toggle language"
+        >
+          <Globe className="w-3.5 h-3.5 text-cyan-400 group-hover:rotate-45 transition-transform" />
+          <span className={lang === "en" ? "text-cyan-300 font-bold" : "text-slate-400"}>
+            EN
+          </span>
+          <span className="text-slate-500 text-[10px]">/</span>
+          <span className={lang === "fr" ? "text-cyan-300 font-bold" : "text-slate-400"}>
+            FR
+          </span>
+        </button>
+
         {/* Resume Quick Action */}
         <a
           href="/cv.pdf"
@@ -100,7 +117,7 @@ export function Nav() {
           className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold text-white bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-700 shadow-[0_0_16px_rgba(99,102,241,0.35)] transition-all hover:scale-105"
         >
           <Download className="w-3 h-3" />
-          <span>Resume</span>
+          <span>{t.resume}</span>
         </a>
       </nav>
     </header>

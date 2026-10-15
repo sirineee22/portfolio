@@ -9,6 +9,7 @@ import { Education } from "@/components/portfolio/Education";
 import { Contact } from "@/components/portfolio/Contact";
 import { Footer } from "@/components/portfolio/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,17 +41,19 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="min-h-screen text-foreground relative selection:bg-primary/30 selection:text-white">
-      <CanvasBackground />
-      <Nav />
-      <Hero />
-      <About />
-      <PortfolioShowcase />
-      <Experience />
-      <Education />
-      <Contact />
-      <Footer />
-      <Toaster />
-    </main>
+    <LanguageProvider>
+      <main className="min-h-screen text-foreground relative selection:bg-primary/30 selection:text-white">
+        <CanvasBackground />
+        <Nav />
+        <Hero />
+        <About />
+        <PortfolioShowcase />
+        <Experience />
+        <Education />
+        <Contact />
+        <Footer />
+        <Toaster />
+      </main>
+    </LanguageProvider>
   );
 }

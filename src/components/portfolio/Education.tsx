@@ -1,63 +1,23 @@
-import { GraduationCap, Calendar, Sparkles } from "lucide-react";
+import { GraduationCap, Calendar } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
-
-interface EducationItem {
-  badge: string;
-  badgeColor: string;
-  date: string;
-  title: string;
-  institution: string;
-  metric: string;
-  details?: string[];
-}
-
-const educationList: EducationItem[] = [
-  {
-    badge: "CURRENT DEGREE",
-    badgeColor: "#6366f1",
-    date: "2024 — Present",
-    title: "Engineering Degree in Software Engineering",
-    institution: "ESPRIT — Higher School of Engineering & Technology, Ariana",
-    metric: "Specialization: Distributed Systems, Cloud-Native Microservices & DevOps",
-    details: [
-      "Advanced Java / Spring Boot, ASP.NET Core, and FastAPI enterprise architecture",
-      "Container orchestration with Kubernetes and Docker multi-stage pipelines",
-      "Distributed databases, API Gateway routing, and automated testing suites",
-    ],
-  },
-  {
-    badge: "GRADUATION DEGREE",
-    badgeColor: "#10b981",
-    date: "Completed 2024",
-    title: "Bachelor's Degree in Business Intelligence",
-    institution: "ESEN — Higher School of Digital Economy, Manouba",
-    metric: "Graduation Honor: Advanced Data Analytics & BI Architectures",
-    details: [
-      "Relational data modeling, SQL Server, MySQL, and ETL pipeline design",
-      "Executive reporting with Power BI, DAX formulas, and data warehousing",
-    ],
-  },
-  {
-    badge: "FOUNDATION",
-    badgeColor: "#64748b",
-    date: "Completed 2020",
-    title: "High School Diploma in Economics & Management",
-    institution: "Lycée Rafeha, Tunisia",
-    metric: "Foundation: Quantitative Mathematics & Economics",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { translations, educationTranslations } from "@/lib/translations";
 
 export function Education() {
+  const { lang } = useLanguage();
+  const t = translations[lang].education;
+  const items = educationTranslations[lang];
+
   return (
     <section id="education" className="py-20 px-6 relative z-10 scroll-mt-20">
       <div className="max-w-4xl mx-auto">
         {/* SECTION HEADER */}
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-            Education
+            {t.title}
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 font-mono">
-            Academic degrees, engineering studies, and foundations
+            {t.subtitle}
           </p>
         </div>
 
@@ -67,7 +27,7 @@ export function Education() {
           <div className="absolute left-2.5 sm:left-3 top-3 bottom-3 w-[2px] bg-gradient-to-b from-emerald-500 via-teal-500 to-slate-600" />
 
           <div className="space-y-8">
-            {educationList.map((item, idx) => (
+            {items.map((item, idx) => (
               <div key={idx} className="relative">
                 {/* Timeline Node Dot */}
                 <div

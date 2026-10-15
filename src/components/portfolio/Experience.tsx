@@ -1,66 +1,23 @@
-import { Briefcase, Calendar, Building2, Sparkles } from "lucide-react";
+import { Calendar, Building2 } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
-
-interface WorkItem {
-  badge: string;
-  badgeColor: string;
-  date: string;
-  title: string;
-  organization: string;
-  metric: string;
-  details: string[];
-}
-
-const workExperience: WorkItem[] = [
-  {
-    badge: "PRODUCTION INTERNSHIP",
-    badgeColor: "#6366f1",
-    date: "Jun 2026 — Sep 2026",
-    title: "Software Engineering Intern — Railway Operations System",
-    organization: "SNCFT (Tunisian National Railway Company) · Tunis, Tunisia",
-    metric: "Production Delivery: Full-Stack ASP.NET Core, Blazor & MySQL",
-    details: [
-      "Engineered operational railway fleet management web application with real-time views",
-      "Created secure REST APIs with JWT role-based access control (RBAC)",
-      "Built automated CSV/XML data ingestion and reporting modules",
-    ],
-  },
-  {
-    badge: "COMPANY INTERNSHIP",
-    badgeColor: "#10b981",
-    date: "Jul 2025 — Sep 2025",
-    title: "Software Engineering Intern — NUMVIZ Interactive Analysis Platform",
-    organization: "NUMVIZ · Software Engineering Internship",
-    metric: "Interactive Platform: FastAPI, Python, React & Manim Animations",
-    details: [
-      "Engineered NUMVIZ, an interactive full-stack educational platform with dynamic mathematical algorithm visualization",
-      "Automated CI/CD test suites and continuous deployment pipelines (Production on Vercel)",
-    ],
-  },
-  {
-    badge: "BI & DATA INTERNSHIP",
-    badgeColor: "#38bdf8",
-    date: "Feb. 2023 – Apr. 2023",
-    title: "Business Intelligence Intern",
-    organization: "VirtuaDev, Tunisia",
-    metric: "Logistics Analytics: SQL Server, Python, Power BI & ETL",
-    details: [
-      "Processed logistics datasets using SQL Server and Python; developed Power BI dashboards and contributed to ETL workflows",
-    ],
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { translations, experienceTranslations } from "@/lib/translations";
 
 export function Experience() {
+  const { lang } = useLanguage();
+  const t = translations[lang].experience;
+  const items = experienceTranslations[lang];
+
   return (
     <section id="experience" className="py-20 px-6 relative z-10 scroll-mt-20">
       <div className="max-w-4xl mx-auto">
         {/* SECTION HEADER */}
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
-            Work Experience
+            {t.title}
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 font-mono">
-            Production engineering internships and real-world system deployments
+            {t.subtitle}
           </p>
         </div>
 
@@ -70,7 +27,7 @@ export function Experience() {
           <div className="absolute left-2.5 sm:left-3 top-3 bottom-3 w-[2px] bg-gradient-to-b from-indigo-500 to-violet-500" />
 
           <div className="space-y-8">
-            {workExperience.map((item, idx) => (
+            {items.map((item, idx) => (
               <div key={idx} className="relative">
                 {/* Timeline Node Dot */}
                 <div
