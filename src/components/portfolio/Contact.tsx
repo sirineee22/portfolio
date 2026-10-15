@@ -23,16 +23,68 @@ export function Contact() {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
-      toast.success(
-        "Thank you! Your message has been sent. I will get back to you shortly."
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const senderName = String(formData.get("name") || "");
+    const senderEmail = String(formData.get("email") || "");
+    const subject = String(formData.get("subject") || "");
+    const message = String(formData.get("message") || "");
+
+    const payload = {
+      name: senderName,
+      email: senderEmail,
+      subject: subject,
+      message: message,
+      _replyto: senderEmail,
+      _subject: `Portfolio Message from ${senderName} — ${subject}`,
+      _template: "table",
+      _captcha: "false",
+    };
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/dahmane.sirine@esprit.tn",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
       );
-      (e.target as HTMLFormElement).reset();
-    }, 700);
+
+      const result = await response.json().catch(() => null);
+
+      if (response.ok && (!result || result.success !== "false")) {
+        toast.success(
+          "Thank you! Your message has been sent to Dahmane Sirine. I will get back to you shortly."
+        );
+        form.reset();
+      } else {
+        // Fallback to mailto client
+        window.location.href = `mailto:dahmane.sirine@esprit.tn?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(
+          `From: ${senderName} (${senderEmail})\n\n${message}`
+        )}`;
+        toast.info("Opening your email client to send the message directly...");
+      }
+    } catch {
+      // If network or adblocker interrupts fetch, trigger direct email
+      window.location.href = `mailto:dahmane.sirine@esprit.tn?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(
+        `From: ${senderName} (${senderEmail})\n\n${message}`
+      )}`;
+      toast.info("Opening your email client to send the message directly...");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
