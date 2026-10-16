@@ -29,9 +29,6 @@ import neo4jModelingImg from "@/assets/certificates/2data.PNG";
 import neo4jCypherImg from "@/assets/certificates/3data.PNG";
 import mongodbIndexesImg from "@/assets/certificates/mongodb_page-0001.jpg";
 import mongodbModelingImg from "@/assets/certificates/Modeling Data RelationshipsCERTIF_page-0001.jpg";
-import courseraCImg from "@/assets/certificates/Coursera-MEFADJMQRJVV_page-0001.jpg";
-import googleDataStudioImg from "@/assets/certificates/data studio certif.PNG";
-import simplilearnDataVizImg from "@/assets/certificates/skillup cerrtiff.PNG";
 
 type TabType = "projects" | "certificates" | "stack";
 
@@ -135,29 +132,6 @@ const certificatesList: CertificateItem[] = [
     date: "Jan 2026",
     image: mongodbModelingImg,
     credentialId: "MDBwfzoy5dl0c",
-  },
-  {
-    id: "coursera-c",
-    title: "C for Everyone: Programming",
-    issuer: "UC Santa Cruz · Coursera",
-    date: "May 2022",
-    image: courseraCImg,
-    credentialId: "MEFADJMQRJVV",
-  },
-  {
-    id: "google-ds",
-    title: "Introduction to Data Studio",
-    issuer: "Google Analytics Academy",
-    date: "Dec 2026",
-    image: googleDataStudioImg,
-  },
-  {
-    id: "simplilearn",
-    title: "Introduction to Data Visualization",
-    issuer: "Simplilearn SkillUp",
-    date: "Dec 2023",
-    image: simplilearnDataVizImg,
-    credentialId: "4750922",
   },
 ];
 
@@ -507,18 +481,13 @@ export function PortfolioShowcase() {
                   </div>
 
                   {/* Meta details */}
-                  <div className="p-4 flex items-center justify-between">
-                    <div className="min-w-0">
-                      <h3 className="text-sm font-bold text-white tracking-tight truncate group-hover:text-violet-300 transition-colors">
-                        {cert.title}
-                      </h3>
-                      <p className="text-[11px] font-mono text-slate-400 mt-0.5">
-                        {cert.issuer}
-                      </p>
-                    </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.05] border border-white/[0.08] text-indigo-300 shrink-0">
-                      {cert.date}
-                    </span>
+                  <div className="p-4">
+                    <h3 className="text-sm font-bold text-white tracking-tight truncate group-hover:text-violet-300 transition-colors">
+                      {cert.title}
+                    </h3>
+                    <p className="text-[11px] font-mono text-slate-400 mt-0.5">
+                      {cert.issuer}
+                    </p>
                   </div>
                 </SpotlightCard>
               ))}

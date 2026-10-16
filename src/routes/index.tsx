@@ -11,6 +11,8 @@ import { Footer } from "@/components/portfolio/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from "@/context/LanguageContext";
 
+import { ThemeProvider } from "@/context/ThemeContext";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -46,19 +48,21 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <LanguageProvider>
-      <main className="min-h-screen text-foreground relative selection:bg-primary/30 selection:text-white">
-        <CanvasBackground />
-        <Nav />
-        <Hero />
-        <About />
-        <PortfolioShowcase />
-        <Experience />
-        <Education />
-        <Contact />
-        <Footer />
-        <Toaster />
-      </main>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <main className="min-h-screen text-foreground relative selection:bg-primary/30 selection:text-white transition-colors duration-300">
+          <CanvasBackground />
+          <Nav />
+          <Hero />
+          <About />
+          <PortfolioShowcase />
+          <Experience />
+          <Education />
+          <Contact />
+          <Footer />
+          <Toaster />
+        </main>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

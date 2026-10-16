@@ -18,9 +18,6 @@ import neo4jModelingImg from "@/assets/certificates/2data.PNG";
 import neo4jCypherImg from "@/assets/certificates/3data.PNG";
 import mongodbIndexesImg from "@/assets/certificates/mongodb_page-0001.jpg";
 import mongodbModelingImg from "@/assets/certificates/Modeling Data RelationshipsCERTIF_page-0001.jpg";
-import courseraCImg from "@/assets/certificates/Coursera-MEFADJMQRJVV_page-0001.jpg";
-import googleDataStudioImg from "@/assets/certificates/data studio certif.PNG";
-import simplilearnDataVizImg from "@/assets/certificates/skillup cerrtiff.PNG";
 
 interface CertificateItem {
   id: string;
@@ -91,39 +88,6 @@ const certificates: CertificateItem[] = [
     image: mongodbModelingImg,
     color: "#059669",
   },
-  {
-    id: "coursera-c",
-    badge: "UC SANTA CRUZ",
-    title: "C for Everyone: Programming Fundamentals",
-    issuer: "University of California, Santa Cruz (Coursera)",
-    date: "May 2, 2022",
-    credentialId: "MEFADJMQRJVV",
-    verifyUrl: "https://coursera.org/verify/MEFADJMQRJVV",
-    description: "C programming language, memory management, pointers, structured algorithms, and foundational computer science principles.",
-    image: courseraCImg,
-    color: "#6366f1",
-  },
-  {
-    id: "google-datastudio",
-    badge: "GOOGLE",
-    title: "Introduction to Data Studio",
-    issuer: "Google Analytics Academy",
-    date: "Valid through Dec 29, 2026",
-    description: "Data Studio dashboard design, reporting pipelines, data source connections, and visual metric analytics.",
-    image: googleDataStudioImg,
-    color: "#f59e0b",
-  },
-  {
-    id: "simplilearn-dataviz",
-    badge: "SIMPLILEARN",
-    title: "Introduction to Data Visualization",
-    issuer: "Simplilearn SkillUp",
-    date: "Dec 31, 2023",
-    credentialId: "4750922",
-    description: "Data visualization concepts, chart design selection, storytelling with business data, and analytics reporting.",
-    image: simplilearnDataVizImg,
-    color: "#ec4899",
-  },
 ];
 
 export function Certifications() {
@@ -181,9 +145,6 @@ export function Certifications() {
                       }}
                     >
                       {current.badge}
-                    </span>
-                    <span className="text-xs font-mono text-slate-400">
-                      {current.date}
                     </span>
                   </div>
 

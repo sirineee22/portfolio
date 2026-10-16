@@ -1,10 +1,12 @@
 import { GraduationCap, Calendar } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { translations, educationTranslations } from "@/lib/translations";
 
 export function Education() {
   const { lang } = useLanguage();
+  const { isDark } = useTheme();
   const t = translations[lang].education;
   const items = educationTranslations[lang];
 
@@ -13,10 +15,18 @@ export function Education() {
       <div className="max-w-4xl mx-auto">
         {/* SECTION HEADER */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-2">
+          <h2
+            className={`text-3xl sm:text-4xl font-extrabold tracking-tight mb-2 transition-colors ${
+              isDark ? "text-white" : "text-slate-900"
+            }`}
+          >
             {t.title}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-mono">
+          <p
+            className={`text-xs sm:text-sm font-mono transition-colors ${
+              isDark ? "text-slate-400" : "text-slate-600"
+            }`}
+          >
             {t.subtitle}
           </p>
         </div>
@@ -24,14 +34,16 @@ export function Education() {
         {/* TIMELINE CONTAINER */}
         <div className="relative pl-7 sm:pl-10">
           {/* Vertical Timeline Track */}
-          <div className="absolute left-2.5 sm:left-3 top-3 bottom-3 w-[2px] bg-gradient-to-b from-emerald-500 via-teal-500 to-slate-600" />
+          <div className="absolute left-2.5 sm:left-3 top-3 bottom-3 w-[2px] bg-gradient-to-b from-emerald-500 via-teal-500 to-slate-400" />
 
           <div className="space-y-8">
             {items.map((item, idx) => (
               <div key={idx} className="relative">
                 {/* Timeline Node Dot */}
                 <div
-                  className="absolute -left-[23px] sm:-left-[35px] top-4 w-3.5 h-3.5 rounded-full bg-[#030712] border-2 shadow-sm"
+                  className={`absolute -left-[23px] sm:-left-[35px] top-4 w-3.5 h-3.5 rounded-full border-2 shadow-sm transition-colors ${
+                    isDark ? "bg-[#030712]" : "bg-white"
+                  }`}
                   style={{ borderColor: item.badgeColor }}
                 />
 
@@ -51,29 +63,61 @@ export function Education() {
                     >
                       {item.badge}
                     </span>
-                    <span className="text-xs font-mono text-slate-400 flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-slate-500" />
+                    <span
+                      className={`text-xs font-mono flex items-center gap-1 ${
+                        isDark ? "text-slate-400" : "text-slate-500"
+                      }`}
+                    >
+                      <Calendar className="w-3 h-3 opacity-60" />
                       {item.date}
                     </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  <h3
+                    className={`text-base sm:text-lg font-bold tracking-tight transition-colors ${
+                      isDark ? "text-white" : "text-slate-900"
+                    }`}
+                  >
                     {item.title}
                   </h3>
-                  <p className="text-xs font-mono text-slate-400 mt-0.5 flex items-center gap-1.5">
-                    <GraduationCap className="w-3.5 h-3.5 text-emerald-400" />
+                  <p
+                    className={`text-xs font-mono mt-0.5 flex items-center gap-1.5 ${
+                      isDark ? "text-slate-400" : "text-slate-600"
+                    }`}
+                  >
+                    <GraduationCap
+                      className={`w-3.5 h-3.5 ${
+                        isDark ? "text-emerald-400" : "text-emerald-600"
+                      }`}
+                    />
                     <span>{item.institution}</span>
                   </p>
 
-                  <p className="text-xs font-mono text-emerald-400 mt-2">
+                  <p
+                    className={`text-xs font-mono mt-2 ${
+                      isDark ? "text-emerald-400" : "text-emerald-600"
+                    }`}
+                  >
                     ▸ {item.metric}
                   </p>
 
                   {item.details && (
-                    <ul className="mt-3 pt-3 border-t border-white/[0.06] space-y-1.5 text-xs text-slate-300">
+                    <ul
+                      className={`mt-3 pt-3 border-t space-y-1.5 text-xs transition-colors ${
+                        isDark
+                          ? "border-white/[0.06] text-slate-300"
+                          : "border-slate-200 text-slate-700"
+                      }`}
+                    >
                       {item.details.map((d, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <span className="text-emerald-400">▹</span>
+                          <span
+                            className={
+                              isDark ? "text-emerald-400" : "text-emerald-600"
+                            }
+                          >
+                            ▹
+                          </span>
                           <span>{d}</span>
                         </li>
                       ))}

@@ -1,7 +1,14 @@
 import { useEffect, useRef } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 export function CanvasBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const { theme } = useTheme();
+  const themeRef = useRef(theme);
+
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,13 +53,15 @@ export function CanvasBackground() {
       const dt = Math.min(time - lastTime, 50) / 1000;
       lastTime = time;
 
+      const isLight = themeRef.current === "light";
+
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Deep Obsidian Base
-      ctx.fillStyle = "#030712";
+      // 1. Base Background
+      ctx.fillStyle = isLight ? "#f8fafc" : "#030712";
       ctx.fillRect(0, 0, width, height);
 
-      // 2. Ambient Radial Glow (Linear Indigo & Purple Spotlight following gentle mouse movement)
+      // 2. Ambient Radial Glow (Indigo & Purple Spotlight following gentle mouse movement)
       const gradMouse = ctx.createRadialGradient(
         mouseX,
         mouseY,
@@ -61,9 +70,15 @@ export function CanvasBackground() {
         mouseY,
         Math.max(width * 0.4, 450)
       );
-      gradMouse.addColorStop(0, "rgba(99, 102, 241, 0.07)");
-      gradMouse.addColorStop(0.5, "rgba(139, 92, 246, 0.03)");
-      gradMouse.addColorStop(1, "rgba(3, 7, 18, 0)");
+      if (isLight) {
+        gradMouse.addColorStop(0, "rgba(99, 102, 241, 0.08)");
+        gradMouse.addColorStop(0.5, "rgba(139, 92, 246, 0.03)");
+        gradMouse.addColorStop(1, "rgba(248, 250, 252, 0)");
+      } else {
+        gradMouse.addColorStop(0, "rgba(99, 102, 241, 0.07)");
+        gradMouse.addColorStop(0.5, "rgba(139, 92, 246, 0.03)");
+        gradMouse.addColorStop(1, "rgba(3, 7, 18, 0)");
+      }
       ctx.fillStyle = gradMouse;
       ctx.fillRect(0, 0, width, height);
 
@@ -76,9 +91,15 @@ export function CanvasBackground() {
         0,
         width * 0.65
       );
-      gradTop.addColorStop(0, "rgba(99, 102, 241, 0.12)");
-      gradTop.addColorStop(0.5, "rgba(56, 189, 248, 0.04)");
-      gradTop.addColorStop(1, "rgba(3, 7, 18, 0)");
+      if (isLight) {
+        gradTop.addColorStop(0, "rgba(99, 102, 241, 0.10)");
+        gradTop.addColorStop(0.5, "rgba(56, 189, 248, 0.04)");
+        gradTop.addColorStop(1, "rgba(248, 250, 252, 0)");
+      } else {
+        gradTop.addColorStop(0, "rgba(99, 102, 241, 0.12)");
+        gradTop.addColorStop(0.5, "rgba(56, 189, 248, 0.04)");
+        gradTop.addColorStop(1, "rgba(3, 7, 18, 0)");
+      }
       ctx.fillStyle = gradTop;
       ctx.fillRect(0, 0, width, height);
 
@@ -96,7 +117,9 @@ export function CanvasBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(226, 232, 240, ${p.alpha})`;
+        ctx.fillStyle = isLight
+          ? `rgba(71, 85, 105, ${p.alpha * 0.65})`
+          : `rgba(226, 232, 240, ${p.alpha})`;
         ctx.fill();
 
         // Connect nearby particles with ultra-soft lines
@@ -110,7 +133,9 @@ export function CanvasBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${0.12 * (1 - dist / 110)})`;
+            ctx.strokeStyle = isLight
+              ? `rgba(99, 102, 241, ${0.15 * (1 - dist / 110)})`
+              : `rgba(99, 102, 241, ${0.12 * (1 - dist / 110)})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
